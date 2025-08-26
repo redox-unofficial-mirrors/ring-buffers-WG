@@ -16,12 +16,13 @@ pipe-like interface (but that has packets ala `SOCK_SEQPACKET`), that ends up re
 
 API's which might benefit from syscalls or kernel integration (e.g. flag bits on memory-mapped areas and pipes):
 * request a new ring buffer (represented via a file descriptor).
-* signal to the other end that data is available (in order to wake up the other end)
-* wait for data to be available (waiting for the signal noted above)
 * request a new buffer / memory-mapped area to be associated to the ring buffer (used to transfer data in bulk)
   * The kernel has to keep track of these associations. These buffers have to be made available to both ends.
+* signal to the other end that data is available (in order to wake up the other end)
+* wait for data to be available (waiting for the signal noted above)
 
 Note that the last two items in Linux are both done by `io_uring_enter`, but can also be done using `io_uring_submit` and `io_uring_wait_cqe`.
+It was already noted by 4lDO2 that the RedoxOS `fevent` API should be able to fulfill the last two items.
 
 Requesting a new ring buffer means requesting at least 2 memory-mapped areas, in particular,
 * an area for the ring buffer header, mapped `read+write`
