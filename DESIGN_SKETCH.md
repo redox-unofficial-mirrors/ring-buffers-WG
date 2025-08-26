@@ -80,3 +80,9 @@ we then need a library API which has a concept of submission queue entries (sqes
 Open questions:
 * how much effort would be saved by only exposing the high-level API?
   (meaning the underlying API might be not particularly user friendly and/or unstable)
+
+## References / literature
+
+* The original `io-uring` paper: https://kernel.dk/io_uring.pdf
+* An older RFC about ring buffers: https://gitlab.redox-os.org/4lDO2/rfcs/-/blob/io_uring/text/0000-io_uring.md
+* `ipcd`: https://gitlab.redox-os.org/redox-os/base/-/tree/main/ipcd
